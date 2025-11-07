@@ -1,96 +1,167 @@
 'use client';
 
+import { useMemo, useCallback } from 'react';
 import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import type { ColumnDef } from '@tanstack/react-table';
+import { useQueryState } from 'nuqs';
+import { toast } from 'react-hot-toast';
 import { getDoctors } from '@/actions/dashboard/manage-doctors/get-doctors';
+import { deleteDoctor } from '@/actions/dashboard/manage-doctors/delete-doctor';
 import type { Doctor } from '@/types/doctor';
-import { Table, type TableColumn } from '@/components/table';
+import { DataTable } from '@/components/data-table';
+import { useModal } from '@/hooks/modal';
+import { Pencil, Trash2 } from 'lucide-react';
 
 export function ListDoctors() {
+  const queryClient = useQueryClient();
+  const editModal = useModal('edit-doctor');
+  const [, setEditId] = useQueryState('modal-edit-doctor-id', {
+    defaultValue: '',
+  });
+
   const fetchDoctors = useQuery({
     queryKey: ['dashboard', 'manage-doctors', 'list'],
     queryFn: getDoctors,
   });
 
-  const columns: TableColumn<Doctor>[] = [
-    {
-      key: 'image',
-      header: '',
-      align: 'center',
-      className: 'w-20',
-      render: (doctor) => (
-        <div className="mx-auto h-12 w-12 overflow-hidden rounded-xl bg-gray-100">
-          <Image
-            src={doctor.image}
-            alt={doctor.full_name}
-            width={48}
-            height={48}
-            className="h-full w-full object-cover"
-          />
-        </div>
-      ),
+  const deleteMutation = useMutation({
+    mutationFn: deleteDoctor,
+    onSuccess: () => {
+      toast.success('پزشک حذف شد');
+      queryClient.invalidateQueries({
+        queryKey: ['dashboard', 'manage-doctors', 'list'],
+      });
     },
-    {
-      key: 'full_name',
-      header: 'نام پزشک',
-      render: (doctor) => (
-        <div className="flex flex-col">
-          <span className="font-semibold text-gray-900">
-            {doctor.full_name}
-          </span>
-          <span className="text-xs text-gray-500">{doctor.slug}</span>
-        </div>
-      ),
+    onError: (error: Error) => {
+      toast.error(error.message || 'خطا در حذف پزشک');
     },
-    {
-      key: 'medical_code',
-      header: 'کد نظام پزشکی',
-      className: 'text-sm text-gray-600',
-      render: (doctor) => doctor.medical_code,
+  });
+
+  const handleEdit = useCallback(
+    (id: string) => {
+      setEditId(id);
+      editModal.show();
     },
-    {
-      key: 'category',
-      header: 'دسته‌بندی',
-      className: 'text-sm text-gray-600',
-      render: (doctor) => doctor.category?.name,
+    [setEditId, editModal],
+  );
+
+  const handleDelete = useCallback(
+    (id: string) => {
+      deleteMutation.mutate(id);
     },
-    {
-      key: 'documents',
-      header: 'مدارک',
-      render: (doctor) =>
-        doctor.documents.length ? (
-          <div className="flex flex-wrap gap-2">
-            {doctor.documents.map((document, index) => (
-              <span
-                key={index}
-                className="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs"
-              >
-                {document}
+    [deleteMutation],
+  );
+
+  const columns = useMemo<ColumnDef<Doctor, unknown>[]>(
+    () => [
+      {
+        id: 'image',
+        header: '',
+        meta: 'text-center w-20',
+        cell: ({ row }) => (
+          <div className="mx-auto h-12 w-12 overflow-hidden rounded-xl bg-gray-100">
+            {row.original.image ? (
+              <Image
+                src={row.original.image}
+                alt={row.original.full_name}
+                width={48}
+                height={48}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <span className="flex h-full w-full items-center justify-center text-xs text-gray-400">
+                بدون تصویر
               </span>
-            ))}
+            )}
           </div>
-        ) : (
-          <span className="text-xs text-gray-400">ثبت نشده</span>
         ),
-    },
-    {
-      key: 'created_at',
-      header: 'تاریخ ثبت',
-      align: 'right',
-      className: 'text-sm text-gray-600 whitespace-nowrap',
-      render: (doctor) =>
-        new Date(doctor.created_at).toLocaleDateString('fa-IR'),
-    },
-  ];
+      },
+      {
+        accessorKey: 'full_name',
+        header: 'نام پزشک',
+        meta: 'text-center',
+        cell: ({ row }) => (
+          <span className="block text-center text-gray-900">
+            {row.original.full_name}
+          </span>
+        ),
+      },
+      {
+        accessorKey: 'slug',
+        header: 'اسلاگ',
+        meta: 'text-center',
+        cell: ({ row }) => (
+          <span className="block text-center text-gray-600">
+            {row.original.slug}
+          </span>
+        ),
+      },
+      {
+        accessorKey: 'medical_code',
+        header: 'کد نظام پزشکی',
+        meta: 'text-center',
+        cell: ({ row }) => (
+          <span className="block text-center">{row.original.medical_code}</span>
+        ),
+      },
+      {
+        accessorKey: 'category',
+        header: 'دسته‌بندی',
+        meta: 'text-center',
+        cell: ({ row }) => (
+          <span className="block text-center">
+            {row.original.category?.name}
+          </span>
+        ),
+      },
+      {
+        accessorKey: 'created_at',
+        header: 'تاریخ ثبت',
+        meta: 'text-center whitespace-nowrap',
+        cell: ({ row }) => (
+          <span className="block text-center">
+            {new Date(row.original.created_at).toLocaleDateString('fa-IR')}
+          </span>
+        ),
+      },
+      {
+        id: 'actions',
+        header: '',
+        meta: 'text-center w-40',
+        cell: ({ row }) => (
+          <div className="flex items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => handleEdit(row.original.id)}
+              className="flex bg-secondary text-white h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition hover:bg-secondary/80"
+              aria-label="ویرایش پزشک"
+            >
+              <Pencil className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleDelete(row.original.id)}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500 text-white transition hover:bg-red-600 disabled:cursor-not-allowed disabled:bg-red-400"
+              aria-label="حذف پزشک"
+              disabled={deleteMutation.isPending}
+            >
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </div>
+        ),
+      },
+    ],
+    [deleteMutation.isPending, handleDelete, handleEdit],
+  );
 
   return (
     <div className="container">
-      <Table
+      <DataTable
         columns={columns}
         data={fetchDoctors.data ?? []}
         isLoading={fetchDoctors.isLoading}
         emptyState="هیچ پزشکی ثبت نشده است"
-        rowKey={(doctor) => doctor.id}
       />
     </div>
   );

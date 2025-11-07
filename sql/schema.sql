@@ -5,7 +5,6 @@ create table if not exists public.category (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   slug text not null unique,
-  image text not null,
   created_at timestamptz not null default timezone('utc', now())
 );
 

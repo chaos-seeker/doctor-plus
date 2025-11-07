@@ -1,15 +1,11 @@
 import { supabaseClient } from '@/lib/supabase';
-import type { Category } from '@/types/category';
 
-export async function addCategory(
-  payload: Pick<Category, 'name' | 'slug' | 'image'>,
-) {
+export async function addCategory(payload: { name: string; slug: string }) {
   const { data, error } = await supabaseClient
     .from('category')
     .insert({
       name: payload.name,
       slug: payload.slug,
-      image: payload.image,
     })
     .select()
     .single();

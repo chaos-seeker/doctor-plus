@@ -33,7 +33,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={addCategoryModal.show}
-                  className="bg-primary hover:bg-primary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
+                  className="bg-secondary hover:bg-secondary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
                 >
                   <p>افزودن دسته‌بندی</p>
                 </button>
@@ -42,7 +42,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={addDoctorModal.show}
-                  className="bg-primary hover:bg-primary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
+                  className="bg-secondary hover:bg-secondary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
                 >
                   <p>افزودن پزشک</p>
                 </button>

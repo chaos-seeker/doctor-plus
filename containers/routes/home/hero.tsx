@@ -26,7 +26,7 @@ export const Hero = () => {
           priority
           className="object-cover opacity-70"
         />
-        <div className="relative z-10 flex h-full flex-col flex-col-reverse justify-center gap-3 xl:flex-row xl:flex-row-reverse xl:items-center xl:gap-30">
+        <div className="relative z-10 flex h-full flex-col flex-col-reverse justify-center gap-3 xl:flex-row xl:flex-row-reverse xl:items-center xl:gap-16">
           <div className="flex justify-center">
             <div className="x-auto w-full max-w-[350px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[500px] xl:order-1 xl:max-w-[480px]">
               <Image
@@ -68,11 +68,11 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-7 left-1/2 z-10 flex w-[340px] -translate-x-1/2 items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white p-2 xl:-right-6 xl:bottom-25">
+      <div className="absolute -bottom-7 left-1/2 z-10 flex w-[340px] -translate-x-1/2 items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white p-2 xl:-right-0 xl:bottom-25">
         <input
           type="text"
           placeholder="جستجوی پزشک"
-          className="w-full text-sm outline-none truncate"
+          className="w-full truncate text-sm outline-none"
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           onKeyDown={(event) => {

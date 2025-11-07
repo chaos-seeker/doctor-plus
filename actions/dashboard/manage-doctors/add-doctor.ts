@@ -16,12 +16,12 @@ export async function addDoctor(
   const { data, error } = await supabaseClient
     .from('doctor')
     .insert(payload)
-    .select()
+    .select('*, category(*)')
     .single();
 
   if (error) {
     throw new Error(error.message);
   }
 
-  return data;
+  return data as Doctor;
 }

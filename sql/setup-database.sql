@@ -1,3 +1,2 @@
--- Setup script for Supabase database
--- Run schema definitions
+-- Setup script for initializing the database schema
 \i schema.sql

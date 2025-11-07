@@ -8,8 +8,8 @@ export const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <footer className="bg-bg">
-      <div className="text-white container relative py-5 text-center bg-grey-10">
+    <footer className="bg-[#114b5f] container rounded-t-2xl">
+      <div className="text-white relative py-4 text-center">
         <p>توسعه توسط حمید شاهسونی</p>
         <button
         onClick={handleScrollToTop}

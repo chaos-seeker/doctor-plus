@@ -32,12 +32,12 @@ export async function updateDoctor(
     .from('doctor')
     .update(updates)
     .eq('id', id)
-    .select()
+    .select('*, category(*)')
     .single();
 
   if (error) {
     throw new Error(error.message);
   }
 
-  return data;
+  return data as Doctor;
 }

@@ -4,7 +4,6 @@
   --text-xsp: 13px;
   --text-smp: 15px;
   --text-mdp: 17px;
-  --color-bg: #114b5f;
   --color-primary: #1dbab5;
   --color-secondary: #8d1ec9;
 }
@@ -17,7 +16,7 @@
     @apply outline-none;
   }
   main {
-    @apply flex h-full flex-1 flex-col gap-5 py-6;
+    @apply flex h-full flex-1 flex-col gap-5 pt-6 pb-10;
   }
   button {
     @apply cursor-pointer;

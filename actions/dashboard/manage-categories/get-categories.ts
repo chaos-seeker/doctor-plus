@@ -1,12 +1,5 @@
 import { supabaseClient } from '@/lib/supabase';
-
-export interface Category {
-  id: string;
-  name_fa: string;
-  slug: string;
-  image: string;
-  created_at: string;
-}
+import type { Category } from '@/types/category';
 
 export async function getCategories(): Promise<Category[]> {
   const { data, error } = await supabaseClient
@@ -18,5 +11,5 @@ export async function getCategories(): Promise<Category[]> {
     throw new Error(error.message);
   }
 
-  return data ?? [];
+  return (data as Category[]) ?? [];
 }

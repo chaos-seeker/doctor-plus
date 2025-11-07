@@ -16,4 +16,3 @@ export default async function DoctorPage(props: PageProps) {
 
   return <DoctorProfile doctor={doctor} />;
 }
-

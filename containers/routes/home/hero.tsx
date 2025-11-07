@@ -49,8 +49,8 @@ export const Hero = () => {
                 width={40}
                 height={40}
               />
-              <p className="font-extrabold sm:text-2xl sm:text-3xl">به صورت</p>
-              <div className="h-10 rounded-xl bg-linear-to-r from-[#169e9a] via-white/20 to-[#169e9a] p-2 px-3">
+              <p className="font-extrabold sm:text-2xl sm:text-3xl hidden sm:block">به صورت</p>
+              <div className="h-10 rounded-xl bg-linear-to-r from-[#169e9a] via-white/20 to-[#169e9a] p-2 px-3 hidden sm:block">
                 <p className="font-semibold">آنلاین</p>
               </div>
             </div>

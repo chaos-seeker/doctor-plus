@@ -3,4 +3,3 @@ import { ListRequests } from '@/containers/routes/dashboard/manage-requests/list
 export default function Page() {
   return <ListRequests />;
 }
-

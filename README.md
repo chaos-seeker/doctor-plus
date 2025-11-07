@@ -40,8 +40,6 @@
 
 - doctor list
 
-- search doctors
-
 - appointment request form
 
 - manage doctors
@@ -49,9 +47,3 @@
 - manage categories
 
 - manage appointment requests
-
-- persian date picker
-
-- form validation
-
-- authentication

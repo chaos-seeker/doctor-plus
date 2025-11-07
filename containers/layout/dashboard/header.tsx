@@ -12,17 +12,20 @@ export default function Header() {
   const pathname = usePathname();
   const isManageDoctors = pathname?.includes('/manage-doctors');
   const isManageCategories = pathname?.includes('/manage-categories');
+  const isManageRequests = pathname?.includes('/manage-requests');
   const addDoctorModal = useModal('add-doctor');
   const addCategoryModal = useModal('add-category');
 
   return (
     <header>
-      <div className="bg-white rounded-b-2xl shadow-[0_0_12px_0_rgba(158,158,158,.25)] container px-0">
+      <div className="container rounded-b-2xl bg-white px-0 shadow-[0_0_12px_0_rgba(158,158,158,.25)]">
         <div className="flex flex-col items-center justify-between pt-4">
-          <div className="flex items-center justify-between w-full px-4">
-            <button type="button" 
-            onClick={() => window.location.href = '/'}
-            className="relative z-0">
+          <div className="flex w-full items-center justify-between px-4">
+            <button
+              type="button"
+              onClick={() => (window.location.href = '/')}
+              className="relative z-0"
+            >
               <Image
                 src="/images/layout/header-logo.svg"
                 alt="logo"
@@ -51,7 +54,7 @@ export default function Header() {
               )}
             </div>
           </div>
-          <div className="border-slate-200 py-4 px-4 border-t w-full flex justify-center mt-3 border-slate-200">
+          <div className="mt-3 flex w-full justify-center border-t border-slate-200 px-4 py-4">
             <Tabs />
           </div>
         </div>
@@ -65,6 +68,7 @@ const Tabs = () => {
   const activeTabRef = useRef<HTMLAnchorElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const data = [
+    { label: 'مدیریت درخواست‌ها', href: '/dashboard/manage-requests' },
     { label: 'مدیریت دکتر ها', href: '/dashboard/manage-doctors' },
     { label: 'مدیریت دسته بندی ها', href: '/dashboard/manage-categories' },
   ];
@@ -104,8 +108,10 @@ const Tabs = () => {
           >
             <button
               className={cn(
-                'text-sm font-medium px-4 py-2.5 rounded-xl',
-                isActive ? 'text-white bg-primary' : 'text-gray-500 bg-transparent',
+                'rounded-xl px-4 py-2.5 text-sm font-medium',
+                isActive
+                  ? 'bg-primary text-white'
+                  : 'bg-transparent text-gray-500',
               )}
             >
               {item.label}

@@ -57,7 +57,7 @@ export const Hero = () => {
             <p className="font-semibold text-white/90">
               همین حالا وقت رزرو کنید
             </p>
-            <Link href="/request" className="mt-4 inline-block xl:mb-33">
+            <Link href="/request" className="mt-4 inline-block">
               <button className="flex items-center gap-1.5 rounded-xl bg-[#159f9b] px-4 py-2.5 text-white transition-all hover:bg-[#159f9b]/90">
                 <span className="flex items-center gap-2 px-1 py-1">
                   <p>درخواست نوبت</p>
@@ -67,28 +67,6 @@ export const Hero = () => {
             </Link>
           </div>
         </div>
-      </div>
-      <div className="absolute -bottom-7 left-1/2 z-10 flex w-[340px] -translate-x-1/2 items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white p-2 xl:-right-0 xl:bottom-25">
-        <input
-          type="text"
-          placeholder="جستجوی پزشک"
-          className="w-full truncate text-sm outline-none"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              handleSearch();
-            }
-          }}
-        />
-        <button
-          className="bg-secondary hover:bg-secondary/90 rounded-xl p-2.5 text-white transition-all"
-          onClick={handleSearch}
-          aria-label="جستجو"
-        >
-          <Search className="size-5" />
-        </button>
       </div>
     </section>
   );

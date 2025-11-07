@@ -4,6 +4,9 @@
   --text-xsp: 13px;
   --text-smp: 15px;
   --text-mdp: 17px;
+  --color-bg: #114b5f;
+  --color-primary: #1dbab5;
+  --color-secondary: #8d1ec9;
 }
 
 @layer base {

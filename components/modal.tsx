@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react';
 import { useModal } from '@/hooks/modal';
 import { cn } from '@/utils/cn';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   modalKey: string;
@@ -12,12 +13,12 @@ interface ModalProps {
   onClose?: () => void;
 }
 
-export function Modal({ modalKey, title, children, widthClass = 'max-w-lg', onClose }: ModalProps) {
-  const modal = useModal(modalKey);
+export function Modal(props: ModalProps) {
+  const modal = useModal(props.modalKey);
 
   const closeModal = () => {
     modal.hide();
-    onClose?.();
+    props.onClose?.();
   };
 
   return (
@@ -36,21 +37,21 @@ export function Modal({ modalKey, title, children, widthClass = 'max-w-lg', onCl
         aria-modal="true"
         className={cn(
           'fixed left-1/2 top-1/2 z-50 w-[90vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 transform rounded-2xl bg-white shadow-2xl transition-all duration-200',
-          widthClass,
+          props.widthClass,
           modal.isShow ? 'pointer-events-auto scale-100 opacity-100' : 'pointer-events-none scale-95 opacity-0',
         )}
       >
         <div className="flex items-center justify-between border-b px-6 py-4">
-          <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+          <h2 className="text-lg font-semibold text-gray-900">{props.title}</h2>
           <button
             type="button"
             onClick={closeModal}
-            className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600 transition hover:bg-gray-200"
+            className="rounded-full bg-secondary hover:bg-secondary/90 flex items-center gap-1.5 px-3 py-1 text-sm font-medium text-white transition"
           >
-            بستن
+            <X className="size-4" />
           </button>
         </div>
-        <div className="max-h-[75vh] overflow-y-auto px-6 py-5">{children}</div>
+        <div className="max-h-[75vh] overflow-y-auto px-6 py-5">{props.children}</div>
       </div>
     </>
   );

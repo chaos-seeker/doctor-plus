@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { Modal } from '@/components/modal';
 import { useModal } from '@/hooks/modal';
-import { addCategory } from '@/actions/dashboard/manage-categories/add-category';
+import { addCategory } from '@/actions/dashboard/categories/add-category';
 import { toSlug } from '@/utils/slug';
 import { Input } from '@/components/input';
 import { regex } from '@/constants/regex';

@@ -6,8 +6,8 @@ import type { ColumnDef } from '@tanstack/react-table';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useQueryState } from 'nuqs';
 import { toast } from 'react-hot-toast';
-import { getCategories } from '@/actions/dashboard/manage-categories/get-categories';
-import { deleteCategory } from '@/actions/dashboard/manage-categories/delete-category';
+import { getCategories } from '@/actions/dashboard/categories/get-categories';
+import { deleteCategory } from '@/actions/dashboard/categories/delete-category';
 import type { Category } from '@/types/category';
 import { DataTable } from '@/components/data-table';
 import { useModal } from '@/hooks/modal';
@@ -93,7 +93,7 @@ export function ListCategories() {
             <button
               type="button"
               onClick={() => handleEdit(row.original.id)}
-              className="bg-secondary flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 text-white transition hover:bg-secondary/80"
+              className="bg-secondary hover:bg-secondary/80 flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 text-white transition"
               aria-label="ویرایش دسته‌بندی"
             >
               <Pencil className="h-4 w-4" />

@@ -2,7 +2,7 @@ import { ListDoctors } from '@/containers/routes/dashboard/manage-doctors/list-d
 import { ModalAddDoctor } from '@/containers/routes/dashboard/manage-doctors/modal-add-doctor';
 import { ModalEditDoctor } from '@/containers/routes/dashboard/manage-doctors/modal-edit-doctor';
 
-export default function ManageDoctorsPage() {
+export default function Page() {
   return (
     <>
       <ListDoctors />

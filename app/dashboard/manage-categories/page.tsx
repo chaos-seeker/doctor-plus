@@ -2,7 +2,7 @@ import { ListCategories } from '@/containers/routes/dashboard/manage-categories/
 import { ModalAddCategory } from '@/containers/routes/dashboard/manage-categories/modal-add-category';
 import { ModalEditCategory } from '@/containers/routes/dashboard/manage-categories/modal-edit-category';
 
-export default function ManageCategoriesPage() {
+export default function Page() {
   return (
     <>
       <ListCategories />

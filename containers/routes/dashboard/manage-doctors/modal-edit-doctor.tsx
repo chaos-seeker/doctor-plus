@@ -16,9 +16,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-hot-toast';
 import { Modal } from '@/components/modal';
 import { useModal } from '@/hooks/modal';
-import { getDoctor } from '@/actions/dashboard/manage-doctors/get-doctor';
-import { updateDoctor } from '@/actions/dashboard/manage-doctors/update-doctor';
-import { getCategories } from '@/actions/dashboard/manage-categories/get-categories';
+import { getDoctor } from '@/actions/dashboard/doctors/get-doctor';
+import { updateDoctor } from '@/actions/dashboard/doctors/update-doctor';
+import { getCategories } from '@/actions/dashboard/categories/get-categories';
 import { toSlug } from '@/utils/slug';
 import { Input } from '@/components/input';
 import { Select } from '@/components/select';
@@ -180,7 +180,14 @@ export function ModalEditDoctor() {
     });
     setPreview(data.image ?? '');
     lastAutoSlug.current = data.slug ?? '';
-  }, [modal.isShow, doctorId, detailQuery.data, detailQuery.isFetching, closeAndReset, reset]);
+  }, [
+    modal.isShow,
+    doctorId,
+    detailQuery.data,
+    detailQuery.isFetching,
+    closeAndReset,
+    reset,
+  ]);
 
   const handleFileChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -212,7 +219,9 @@ export function ModalEditDoctor() {
       }),
     onSuccess: () => {
       toast.success('پزشک با موفقیت ویرایش شد');
-      queryClient.invalidateQueries({ queryKey: ['dashboard', 'manage-doctors', 'list'] });
+      queryClient.invalidateQueries({
+        queryKey: ['dashboard', 'manage-doctors', 'list'],
+      });
       queryClient.invalidateQueries({
         queryKey: ['dashboard', 'manage-doctors', 'detail', doctorId],
       });
@@ -272,7 +281,10 @@ export function ModalEditDoctor() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-doctor-full-name" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-doctor-full-name"
+              className="text-sm font-medium text-gray-700"
+            >
               نام و نام خانوادگی
             </label>
             <Input id="edit-doctor-full-name" {...register('full_name')} />
@@ -280,7 +292,10 @@ export function ModalEditDoctor() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-doctor-slug" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-doctor-slug"
+              className="text-sm font-medium text-gray-700"
+            >
               اسلاگ
             </label>
             <Input id="edit-doctor-slug" {...register('slug')} />
@@ -288,7 +303,10 @@ export function ModalEditDoctor() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-doctor-medical-code" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-doctor-medical-code"
+              className="text-sm font-medium text-gray-700"
+            >
               کد نظام پزشکی
             </label>
             <Input
@@ -300,7 +318,10 @@ export function ModalEditDoctor() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-doctor-category" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-doctor-category"
+              className="text-sm font-medium text-gray-700"
+            >
               دسته‌بندی
             </label>
             <Controller
@@ -322,7 +343,10 @@ export function ModalEditDoctor() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-doctor-documents" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-doctor-documents"
+              className="text-sm font-medium text-gray-700"
+            >
               مدارک (هر خط یک مورد)
             </label>
             <Textarea
@@ -334,7 +358,10 @@ export function ModalEditDoctor() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-doctor-description" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-doctor-description"
+              className="text-sm font-medium text-gray-700"
+            >
               توضیحات
             </label>
             <Textarea

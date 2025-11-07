@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getDoctors } from '@/actions/dashboard/manage-doctors/get-doctors';
+import { getDoctors } from '@/actions/dashboard/doctors/get-doctors';
 import { DoctorCard } from '@/components/card';
 import { Sparkles } from 'lucide-react';
 
@@ -11,7 +11,7 @@ export async function ListDoctors() {
   }
 
   return (
-    <section className="container space-y-6 mt-3">
+    <section className="container mt-3 space-y-6">
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
           <div className="bg-primary/15 text-primary flex h-10 w-10 items-center justify-center rounded-full">

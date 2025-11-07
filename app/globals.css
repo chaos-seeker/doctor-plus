@@ -36,3 +36,35 @@
     display: none;
   }
 }
+
+/* DatePicker primary color styles */
+.rmdp-wrapper {
+  --rmdp-primary-color: #1dbab5;
+  --rmdp-secondary-color: #1dbab5;
+  --rmdp-hover-color: #1dbab5;
+  --rmdp-selected-color: #1dbab5;
+}
+
+.rmdp-day.rmdp-selected span:not(.highlight) {
+  background-color: #1dbab5 !important;
+  box-shadow: 0 0 3px #1dbab5 !important;
+}
+
+.rmdp-day.rmdp-today span {
+  background-color: #1dbab5 !important;
+  color: white !important;
+}
+
+.rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+  background-color: #1dbab5 !important;
+  color: white !important;
+}
+
+.rmdp-arrow {
+  border-color: #1dbab5 !important;
+}
+
+.rmdp-arrow-container:hover {
+  background-color: #1dbab5 !important;
+  box-shadow: 0 0 3px #1dbab5 !important;
+}

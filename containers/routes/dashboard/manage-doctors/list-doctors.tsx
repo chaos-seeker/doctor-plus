@@ -6,8 +6,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { ColumnDef } from '@tanstack/react-table';
 import { useQueryState } from 'nuqs';
 import { toast } from 'react-hot-toast';
-import { getDoctors } from '@/actions/dashboard/manage-doctors/get-doctors';
-import { deleteDoctor } from '@/actions/dashboard/manage-doctors/delete-doctor';
+import { getDoctors } from '@/actions/dashboard/doctors/get-doctors';
+import { deleteDoctor } from '@/actions/dashboard/doctors/delete-doctor';
 import type { Doctor } from '@/types/doctor';
 import { DataTable } from '@/components/data-table';
 import { useModal } from '@/hooks/modal';
@@ -134,7 +134,7 @@ export function ListDoctors() {
             <button
               type="button"
               onClick={() => handleEdit(row.original.id)}
-              className="flex bg-secondary text-white h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition hover:bg-secondary/80"
+              className="bg-secondary hover:bg-secondary/80 flex h-8 w-8 items-center justify-center rounded-full border border-gray-200 text-gray-600 text-white transition"
               aria-label="ویرایش پزشک"
             >
               <Pencil className="h-4 w-4" />

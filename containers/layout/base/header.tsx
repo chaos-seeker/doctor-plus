@@ -20,18 +20,11 @@ export function Header() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => window.location.href = '/dashboard/manage-doctors'}
-              className="bg-primary hover:bg-primary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
+              className="bg-secondary hover:bg-secondary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
             >
               <p>داشبورد</p>
               <CircleArrowOutUpLeft className="size-4" />
             </button>
-            <Link
-              href="/auth"
-              className="bg-secondary hover:bg-secondary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
-            >
-              <p>ورود</p>
-              <User className="size-4.5" />
-            </Link>
           </div>
         </div>
       </div>

@@ -9,8 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-hot-toast';
 import { Modal } from '@/components/modal';
 import { useModal } from '@/hooks/modal';
-import { getCategory } from '@/actions/dashboard/manage-categories/get-category';
-import { updateCategory } from '@/actions/dashboard/manage-categories/update-category';
+import { getCategory } from '@/actions/dashboard/categories/get-category';
+import { updateCategory } from '@/actions/dashboard/categories/update-category';
 import { toSlug } from '@/utils/slug';
 import { Input } from '@/components/input';
 import { regex } from '@/constants/regex';
@@ -123,7 +123,14 @@ export function ModalEditCategory() {
       slug: data.slug,
     });
     lastAutoSlug.current = data.slug ?? '';
-  }, [modal.isShow, categoryId, detailQuery.data, detailQuery.isFetching, closeAndReset, reset]);
+  }, [
+    modal.isShow,
+    categoryId,
+    detailQuery.data,
+    detailQuery.isFetching,
+    closeAndReset,
+    reset,
+  ]);
 
   const mutation = useMutation({
     mutationFn: (values: EditCategoryFormValues) =>
@@ -134,7 +141,9 @@ export function ModalEditCategory() {
       }),
     onSuccess: () => {
       toast.success('دسته‌بندی با موفقیت ویرایش شد');
-      queryClient.invalidateQueries({ queryKey: ['dashboard', 'manage-categories', 'list'] });
+      queryClient.invalidateQueries({
+        queryKey: ['dashboard', 'manage-categories', 'list'],
+      });
       queryClient.invalidateQueries({
         queryKey: ['dashboard', 'manage-categories', 'detail', categoryId],
       });
@@ -172,7 +181,10 @@ export function ModalEditCategory() {
       <form id={formId} onSubmit={onSubmit} className="space-y-5">
         <fieldset disabled={isLoading} className="space-y-5">
           <div className="space-y-2">
-            <label htmlFor="edit-category-name" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-category-name"
+              className="text-sm font-medium text-gray-700"
+            >
               نام دسته‌بندی
             </label>
             <Input id="edit-category-name" {...register('name')} />
@@ -180,7 +192,10 @@ export function ModalEditCategory() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="edit-category-slug" className="text-sm font-medium text-gray-700">
+            <label
+              htmlFor="edit-category-slug"
+              className="text-sm font-medium text-gray-700"
+            >
               اسلاگ
             </label>
             <Input id="edit-category-slug" {...register('slug')} />

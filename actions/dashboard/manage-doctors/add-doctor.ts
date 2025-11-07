@@ -6,6 +6,7 @@ export async function addDoctor(
     Doctor,
     | 'image'
     | 'full_name'
+    | 'slug'
     | 'medical_code'
     | 'description'
     | 'documents'

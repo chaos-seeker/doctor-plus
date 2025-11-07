@@ -7,6 +7,7 @@ export async function updateDoctor(
       Doctor,
       | 'image'
       | 'full_name'
+      | 'slug'
       | 'medical_code'
       | 'description'
       | 'documents'
@@ -21,6 +22,7 @@ export async function updateDoctor(
   const updates: Record<string, unknown> = {};
   if (rest.image !== undefined) updates.image = rest.image;
   if (rest.full_name !== undefined) updates.full_name = rest.full_name;
+  if (rest.slug !== undefined) updates.slug = rest.slug;
   if (rest.medical_code !== undefined) updates.medical_code = rest.medical_code;
   if (rest.description !== undefined) updates.description = rest.description;
   if (rest.documents !== undefined) updates.documents = rest.documents;

@@ -4,6 +4,7 @@ export type Doctor = {
   id: string;
   image: string;
   full_name: string;
+  slug: string;
   medical_code: string;
   description: string;
   documents: string[];

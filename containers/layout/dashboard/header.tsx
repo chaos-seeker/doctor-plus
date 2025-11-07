@@ -20,14 +20,16 @@ export default function Header() {
       <div className="bg-white rounded-b-2xl shadow-[0_0_12px_0_rgba(158,158,158,.25)] container px-0">
         <div className="flex flex-col items-center justify-between pt-4">
           <div className="flex items-center justify-between w-full px-4">
-            <Link href="/" className="relative z-0">
+            <button type="button" 
+            onClick={() => window.location.href = '/'}
+            className="relative z-0">
               <Image
                 src="/images/layout/header-logo.svg"
                 alt="logo"
                 width={90}
                 height={30}
               />
-            </Link>
+            </button>
             <div className="flex items-center gap-2">
               {isManageCategories && (
                 <button

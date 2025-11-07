@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { CircleArrowOutUpLeft, User } from 'lucide-react';
@@ -16,13 +18,13 @@ export function Header() {
             />
           </Link>
           <div className="flex items-center gap-2">
-            <Link
-              href="/dashboard/manage-doctors"
+            <button
+              onClick={() => window.location.href = '/dashboard/manage-doctors'}
               className="bg-primary hover:bg-primary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"
             >
               <p>داشبورد</p>
               <CircleArrowOutUpLeft className="size-4" />
-            </Link>
+            </button>
             <Link
               href="/auth"
               className="bg-secondary hover:bg-secondary/90 flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-white transition-all"

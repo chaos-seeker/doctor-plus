@@ -3,6 +3,10 @@ import { supabaseClient } from '@/lib/supabase';
 export async function updateCategory(
   payload: Partial<{ name: string; slug: string }> & { id: string | number },
 ) {
+  if (process.env.NODE_ENV !== 'development') {
+    throw new Error('دسترسی محدود شده است!');
+  }
+
   const { id, ...rest } = payload;
 
   const updates: Record<string, unknown> = {};

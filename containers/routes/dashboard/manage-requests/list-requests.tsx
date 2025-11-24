@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getRequests } from '@/actions/dashboard/request/get-requests';
+import { getRequests } from '@/actions/request/get-requests';
 import type { Request } from '@/types/request';
 import { DataTable } from '@/components/data-table';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -123,4 +123,3 @@ export function ListRequests() {
     </div>
   );
 }
-

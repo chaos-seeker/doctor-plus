@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getDoctors } from '@/actions/dashboard/doctors/get-doctors';
+import { getDoctors } from '@/actions/doctors/get-doctors';
 import { DoctorCard } from '@/components/card';
 import { Sparkles } from 'lucide-react';
 

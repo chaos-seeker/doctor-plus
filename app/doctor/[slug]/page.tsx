@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getDoctorBySlug } from '@/actions/dashboard/doctors/get-doctor-by-slug';
+import { getDoctorBySlug } from '@/actions/doctors/get-doctor-by-slug';
 import { DoctorProfile } from '@/containers/routes/doctor/doctor-profile';
 
 interface PageProps {

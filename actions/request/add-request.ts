@@ -14,6 +14,10 @@ export async function addRequest(
     | 'user_id'
   >,
 ) {
+  if (process.env.NODE_ENV !== 'development') {
+    throw new Error('دسترسی محدود شده است!');
+  }
+
   const { data, error } = await supabaseClient
     .from('request')
     .insert(payload)
